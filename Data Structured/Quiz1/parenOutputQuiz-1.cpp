@@ -29,19 +29,16 @@ int main() {
     for (size_t i = 0; i < input.size(); i++) {
         char c = input[i];
 
-        // ข้าม "<<" และ ">>" (ถือว่าเป็น operator)
         if (c == '<' && i + 1 < input.size() && input[i + 1] == '<') {
-            i++;
-            continue;
+            i++; // เจอ <<
         }
-        if (c == '>' && i + 1 < input.size() && input[i + 1] == '>') {
-            i++;
-            continue;
+        else if (c == '>' && i + 1 < input.size() && input[i + 1] == '>') {
+            i++; // เจอ >>
         }
-
-        if (isOpening(c)) {
+        else if (isOpening(c)) {
             st.push(c);
-        } else if (isClosing(c)) {
+        }
+        else if (isClosing(c)) {
             if (st.empty() || !isMatch(st.top(), c)) {
                 error = true;
                 break;
